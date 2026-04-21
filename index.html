@@ -6,7 +6,7 @@
   <title>Dust & Echo | AI Folk, Blues, and Red Dirt Sessions</title>
   <meta
     name="description"
-    content="A ten-song AI music showcase blending American folk, bluesy rock, and Red Dirt country with room for generated art, lyrics, and audio."
+    content="A ten-song AI music showcase blending American folk, bluesy rock, and Red Dirt country with selectable tracks, lyrics, and cover art."
   >
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,371 +22,151 @@
       <nav class="site-nav" aria-label="Primary">
         <a class="brand" href="#top">Dust & Echo</a>
         <div class="nav-links">
-          <a href="#collection">Songs</a>
-          <a href="#process">Workflow</a>
-          <a href="#assets">Assets</a>
+          <a href="#library">Library</a>
+          <a href="#about">About</a>
+          <a href="#process">Publish</a>
         </div>
       </nav>
 
       <div class="hero-copy">
-        <p class="eyebrow">AI Music Showcase</p>
-        <h1>American folk grit, blues-rock heat, and Red Dirt storytelling.</h1>
+        <p class="eyebrow">AI Music Library</p>
+        <h1>Dust, neon, prayer, and backroad memory in one roots-built collection.</h1>
         <p class="hero-text">
-          Dust & Echo is now set up as a real ten-song collection, with seven lyric-driven tracks,
-          three instrumentals, finished writing files, and prompt-ready descriptions for both music
-          and cover art. The sound leans rootsy, gritty, and cinematic without losing the intimate,
-          human center that makes this lane work.
+          Dust & Echo is a ten-song AI-assisted music library shaped around American folk, blues-rock,
+          and Red Dirt country. Choose a track from the library to open its cover art, full lyric sheet
+          or arrangement notes, short description, and playable audio in the listening panel.
         </p>
         <div class="hero-actions">
-          <a class="button button-solid" href="#collection">Browse the Song Collection</a>
-          <a class="button button-ghost" href="#process">See the Production Plan</a>
+          <a class="button button-solid" href="#library">Open the Library</a>
+          <a class="button button-ghost" href="#about">See the Project Notes</a>
         </div>
       </div>
 
       <div class="hero-panels" aria-label="Project summary">
         <article class="info-panel">
-          <span class="panel-kicker">Sound palette</span>
-          <strong>Folk, bluesy rock, Red Dirt country</strong>
-          <p>Inspired by roots-forward songwriting, electric edge, and wide-open road energy.</p>
-        </article>
-        <article class="info-panel">
-          <span class="panel-kicker">Asset flow</span>
-          <strong>Lyrics, descriptions, images, audio</strong>
-          <p>Every track now has lyrics or arrangement notes plus a matching Suno and cover-art prompt.</p>
+          <span class="panel-kicker">Collection</span>
+          <strong>10 songs, 7 vocal tracks, 3 instrumentals</strong>
+          <p>Each track carries its own world of images, language, and atmosphere without breaking the overall thread.</p>
         </article>
         <article class="info-panel">
           <span class="panel-kicker">Creative tools</span>
           <strong>Suno, ChatGPT Images, Adobe Firefly</strong>
-          <p>The project now covers the three-tool requirement while keeping the visuals cohesive.</p>
+          <p>The music and artwork are all generated through AI tools, then organized into a curated listening site.</p>
+        </article>
+        <article class="info-panel">
+          <span class="panel-kicker">Experience</span>
+          <strong>Selectable library with a focused detail view</strong>
+          <p>The layout is designed to feel closer to a music platform than a long scrolling gallery of static cards.</p>
         </article>
       </div>
     </header>
 
     <main>
-      <section class="section intro-grid" id="assets">
-        <article class="intro-card">
-          <p class="eyebrow">What is ready</p>
-          <h2>A working collection with the real audio and artwork in place.</h2>
+      <section class="section library-section" id="library">
+        <div class="section-heading">
+          <p class="eyebrow">Library</p>
+          <h2>Select a track to load its lyrics, description, and audio.</h2>
           <p>
-            The song cards below now point to the finished cover images and playable audio files.
-            The lyric and description files are still linked, so the page works both as a public
-            listening site and as a clear record of how each track was built.
+            The left side works like a playlist browser. The listening panel updates with the selected song's
+            cover art, metadata, short description, and complete lyric sheet or instrumental notes.
+          </p>
+        </div>
+
+        <div class="library-layout">
+          <aside class="library-sidebar" aria-label="Song list">
+            <div class="sidebar-header">
+              <p class="eyebrow">Tracks</p>
+              <h3>Dust & Echo</h3>
+            </div>
+            <div class="track-list" id="track-list" role="tablist" aria-label="Song selector"></div>
+          </aside>
+
+          <section class="detail-panel" aria-live="polite">
+            <div class="detail-hero">
+              <figure class="detail-cover-frame">
+                <img class="detail-cover" id="detail-cover" src="" alt="">
+              </figure>
+
+              <div class="detail-copy">
+                <p class="detail-kicker" id="detail-index"></p>
+                <h2 id="detail-title"></h2>
+                <p class="detail-meta" id="detail-meta"></p>
+                <p class="detail-tools" id="detail-tools"></p>
+                <p class="detail-description" id="detail-description"></p>
+                <audio class="detail-player" id="detail-player" controls preload="none"></audio>
+                <div class="detail-links">
+                  <a id="detail-lyrics-link" href="">Lyrics file</a>
+                  <a id="detail-description-link" href="">Description file</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-body">
+              <article class="detail-card">
+                <p class="eyebrow">Lyrics / Notes</p>
+                <pre class="detail-lyrics" id="detail-lyrics"></pre>
+              </article>
+
+              <article class="detail-card">
+                <p class="eyebrow">Track Snapshot</p>
+                <dl class="detail-facts" id="detail-facts"></dl>
+              </article>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="section intro-grid" id="about">
+        <article class="intro-card">
+          <p class="eyebrow">Project Notes</p>
+          <h2>A curated AI music library with a roots-country center.</h2>
+          <p>
+            The project blends narrative songwriting, blues-rock energy, and rural imagery into a single
+            listening experience. Instead of showing every song as an equal-size block, the site now gives
+            each track a focused detail view that makes the lyrics and concept easier to engage with.
           </p>
         </article>
         <article class="intro-card checklist-card">
-          <p class="eyebrow">Release status</p>
+          <p class="eyebrow">Included Assets</p>
           <ul class="checklist">
-            <li>10 total songs across one cohesive roots project</li>
-            <li>7 vocal songs and 3 instrumentals</li>
-            <li>Music in Suno, cover art in ChatGPT Images or Adobe Firefly</li>
-            <li>Ready for GitHub Pages once the repo is pushed</li>
+            <li>10 cover images mapped to the final track sequence</li>
+            <li>10 web-ready audio exports for browser playback</li>
+            <li>10 short descriptions matched to the song concepts</li>
+            <li>10 lyric or arrangement-note files linked from the library</li>
           </ul>
         </article>
       </section>
 
-      <section class="section" id="collection">
-        <div class="section-heading">
-          <p class="eyebrow">Song Collection</p>
-          <h2>Ten songs built around memory, grit, faith, and backroad motion.</h2>
-          <p>
-            The titles and concepts below now connect directly to the writing files in
-            <code>assets/lyrics/</code> and the prompt packets in <code>assets/descriptions/</code>.
-            This page has shifted from concept site to listening site, with real assets dropped into
-            the project and ready for publishing.
-          </p>
-        </div>
-
-        <div class="song-grid">
-          <article class="song-card">
-            <figure class="cover-frame">
-              <img
-                class="cover-art"
-                src="assets/images/Dust%20on%20the%20Dashboard.jpg"
-                alt="A dusty pickup truck interior at golden hour for Dust on the Dashboard."
-              >
-              <figcaption>Cover art generated in ChatGPT Images</figcaption>
-            </figure>
-            <p class="song-meta">01 · Vocal track</p>
-            <h3>Dust on the Dashboard</h3>
-            <p class="song-copy">
-              A highway-worn opener about memory, mileage, and the kind of love that never quite
-              leaves the cab of the truck.
-            </p>
-            <p class="song-tools">Music: Suno · Cover art: ChatGPT Images</p>
-            <p class="song-status">Mood: reflective, highway-worn, cinematic</p>
-            <audio class="song-player" controls preload="none">
-              <source src="assets/audio/Dust%20on%20the%20Dashboard.wav" type="audio/wav">
-            </audio>
-            <div class="song-links">
-              <a href="assets/lyrics/song-01-dust-on-the-dashboard.txt">Lyrics file</a>
-              <a href="assets/descriptions/song-01-dust-on-the-dashboard.md">Description file</a>
-            </div>
-          </article>
-
-          <article class="song-card">
-            <figure class="cover-frame">
-              <img
-                class="cover-art"
-                src="assets/images/Neon%20River%20Worn.jpg"
-                alt="A neon-lit riverfront street at night for River Town Revival."
-              >
-              <figcaption>Cover art generated in Adobe Firefly</figcaption>
-            </figure>
-            <p class="song-meta">02 · Instrumental</p>
-            <h3>River Town Revival</h3>
-            <p class="song-copy">
-              A loose, gritty instrumental built for slide guitar, organ haze, and a slow groove
-              that sounds like neon reflecting off muddy water.
-            </p>
-            <p class="song-tools">Music: Suno · Cover art: Adobe Firefly</p>
-            <p class="song-status">Mood: humid, nocturnal, neon-soaked</p>
-            <audio class="song-player" controls preload="none">
-              <source src="assets/audio/Neon%20River%20Worn%20(Instrumental).wav" type="audio/wav">
-            </audio>
-            <div class="song-links">
-              <a href="assets/lyrics/song-02-river-town-revival.txt">Notes file</a>
-              <a href="assets/descriptions/song-02-river-town-revival.md">Description file</a>
-            </div>
-          </article>
-
-          <article class="song-card">
-            <figure class="cover-frame">
-              <img
-                class="cover-art"
-                src="assets/images/Flint%20and%20Honey.jpg"
-                alt="A warm rustic porch scene at blue hour for Flint and Honey."
-              >
-              <figcaption>Cover art generated in ChatGPT Images</figcaption>
-            </figure>
-            <p class="song-meta">03 · Vocal track</p>
-            <h3>Flint & Honey</h3>
-            <p class="song-copy">
-              A rugged love song with equal parts tenderness and bite, aimed at the intersection of
-              Appalachian storytelling and southern blues swagger.
-            </p>
-            <p class="song-tools">Music: Suno · Cover art: ChatGPT Images</p>
-            <p class="song-status">Mood: romantic, rugged, rootsy</p>
-            <audio class="song-player" controls preload="none">
-              <source src="assets/audio/Flint%20%26%20Honey.wav" type="audio/wav">
-            </audio>
-            <div class="song-links">
-              <a href="assets/lyrics/song-03-flint-and-honey.txt">Lyrics file</a>
-              <a href="assets/descriptions/song-03-flint-and-honey.md">Description file</a>
-            </div>
-          </article>
-
-          <article class="song-card">
-            <figure class="cover-frame">
-              <img
-                class="cover-art"
-                src="assets/images/Cedar%20Creek%20Gospel.jpg"
-                alt="A cedar-lined creek at dusk with lantern-lit wood for Cedar Creek Gospel."
-              >
-              <figcaption>Cover art generated in Adobe Firefly</figcaption>
-            </figure>
-            <p class="song-meta">04 · Vocal track</p>
-            <h3>Cedar Creek Gospel</h3>
-            <p class="song-copy">
-              A backwoods redemption song with a steady stomp, weathered harmonies, and lyrics that
-              feel half confession and half prayer.
-            </p>
-            <p class="song-tools">Music: Suno · Cover art: Adobe Firefly</p>
-            <p class="song-status">Mood: spiritual, stomping, creekside</p>
-            <audio class="song-player" controls preload="none">
-              <source src="assets/audio/Cedar%20Creek%20Gospel.wav" type="audio/wav">
-            </audio>
-            <div class="song-links">
-              <a href="assets/lyrics/song-04-cedar-creek-gospel.txt">Lyrics file</a>
-              <a href="assets/descriptions/song-04-cedar-creek-gospel.md">Description file</a>
-            </div>
-          </article>
-
-          <article class="song-card">
-            <figure class="cover-frame">
-              <img
-                class="cover-art"
-                src="assets/images/generated-image-cover-art-1776747546869.jpg"
-                alt="A truck driving a dark rural road at night for County Line After Midnight."
-              >
-              <figcaption>Cover art generated in ChatGPT Images</figcaption>
-            </figure>
-            <p class="song-meta">05 · Instrumental</p>
-            <h3>County Line After Midnight</h3>
-            <p class="song-copy">
-              A darker instrumental cut with reverb-heavy guitar leads, low-end rumble, and a
-              roaming backroad mood.
-            </p>
-            <p class="song-tools">Music: Suno · Cover art: ChatGPT Images</p>
-            <p class="song-status">Mood: tense, lonely, midnight road</p>
-            <audio class="song-player" controls preload="none">
-              <source src="assets/audio/Headlight%20Fenceposts%20(Hard%20Rock).wav" type="audio/wav">
-            </audio>
-            <div class="song-links">
-              <a href="assets/lyrics/song-05-county-line-after-midnight.txt">Notes file</a>
-              <a href="assets/descriptions/song-05-county-line-after-midnight.md">Description file</a>
-            </div>
-          </article>
-
-          <article class="song-card">
-            <figure class="cover-frame">
-              <img
-                class="cover-art"
-                src="assets/images/Old%20Blue%20Flame.jpg"
-                alt="A weathered guitar and amp with blue light for Old Blue Flame."
-              >
-              <figcaption>Cover art generated in Adobe Firefly</figcaption>
-            </figure>
-            <p class="song-meta">06 · Vocal track</p>
-            <h3>Old Blue Flame</h3>
-            <p class="song-copy">
-              A blues-rock burner about stubborn hope, bad habits, and the spark that survives every
-              hard season.
-            </p>
-            <p class="song-tools">Music: Suno · Cover art: Adobe Firefly</p>
-            <p class="song-status">Mood: defiant, smoky, riff-driven</p>
-            <audio class="song-player" controls preload="none">
-              <source src="assets/audio/Old%20Blue%20Flame.wav" type="audio/wav">
-            </audio>
-            <div class="song-links">
-              <a href="assets/lyrics/song-06-old-blue-flame.txt">Lyrics file</a>
-              <a href="assets/descriptions/song-06-old-blue-flame.md">Description file</a>
-            </div>
-          </article>
-
-          <article class="song-card">
-            <figure class="cover-frame">
-              <img
-                class="cover-art"
-                src="assets/images/Broken%20Wheel%20Hallelujah.jpg"
-                alt="A beat-up pickup on a red dirt shoulder at sunset for Broken Wheel Hallelujah."
-              >
-              <figcaption>Cover art generated in ChatGPT Images</figcaption>
-            </figure>
-            <p class="song-meta">07 · Vocal track</p>
-            <h3>Broken Wheel Hallelujah</h3>
-            <p class="song-copy">
-              A rowdy Red Dirt anthem about scraping through hard luck with humor, grit, and a
-              chorus built to be shouted back from the crowd.
-            </p>
-            <p class="song-tools">Music: Suno · Cover art: ChatGPT Images</p>
-            <p class="song-status">Mood: rowdy, backroad, singalong</p>
-            <audio class="song-player" controls preload="none">
-              <source src="assets/audio/Broken%20Wheel%20Hallelujah.wav" type="audio/wav">
-            </audio>
-            <div class="song-links">
-              <a href="assets/lyrics/song-07-broken-wheel-hallelujah.txt">Lyrics file</a>
-              <a href="assets/descriptions/song-07-broken-wheel-hallelujah.md">Description file</a>
-            </div>
-          </article>
-
-          <article class="song-card">
-            <figure class="cover-frame">
-              <img
-                class="cover-art"
-                src="assets/images/Red%20Clay%20Breath.jpg"
-                alt="A red clay landscape under a clear sky for Red Clay Interlude."
-              >
-              <figcaption>Cover art generated in Adobe Firefly</figcaption>
-            </figure>
-            <p class="song-meta">08 · Instrumental</p>
-            <h3>Red Clay Interlude</h3>
-            <p class="song-copy">
-              A shorter instrumental palate cleanser with fingerpicked textures, brushed percussion,
-              and a warm sunset tone.
-            </p>
-            <p class="song-tools">Music: Suno · Cover art: Adobe Firefly</p>
-            <p class="song-status">Mood: warm, spacious, sunset-breather</p>
-            <audio class="song-player" controls preload="none">
-              <source src="assets/audio/Red%20Clay%20Breath.wav" type="audio/wav">
-            </audio>
-            <div class="song-links">
-              <a href="assets/lyrics/song-08-red-clay-interlude.txt">Notes file</a>
-              <a href="assets/descriptions/song-08-red-clay-interlude.md">Description file</a>
-            </div>
-          </article>
-
-          <article class="song-card">
-            <figure class="cover-frame">
-              <img
-                class="cover-art"
-                src="assets/images/Laterns%20in%20Wind.jpg"
-                alt="A lit lantern outside a farmhouse at night for Lanterns in the Wind."
-              >
-              <figcaption>Cover art generated in ChatGPT Images</figcaption>
-            </figure>
-            <p class="song-meta">09 · Vocal track</p>
-            <h3>Lanterns in the Wind</h3>
-            <p class="song-copy">
-              A reflective late-album song with homesick imagery, patient acoustic framing, and a
-              melody meant to sit heavy in the chest.
-            </p>
-            <p class="song-tools">Music: Suno · Cover art: ChatGPT Images</p>
-            <p class="song-status">Mood: homesick, gentle, night-lit</p>
-            <audio class="song-player" controls preload="none">
-              <source src="assets/audio/Lanterns%20in%20Wind.wav" type="audio/wav">
-            </audio>
-            <div class="song-links">
-              <a href="assets/lyrics/song-09-lanterns-in-the-wind.txt">Lyrics file</a>
-              <a href="assets/descriptions/song-09-lanterns-in-the-wind.md">Description file</a>
-            </div>
-          </article>
-
-          <article class="song-card">
-            <figure class="cover-frame">
-              <img
-                class="cover-art"
-                src="assets/images/Headlight%20Fenceposts%20(Classic%20Rock).jpg"
-                alt="A narrow backroad at dusk lined with utility poles for Backroads Don't Forget."
-              >
-              <figcaption>Cover art generated in Adobe Firefly</figcaption>
-            </figure>
-            <p class="song-meta">10 · Vocal track</p>
-            <h3>Backroads Don’t Forget</h3>
-            <p class="song-copy">
-              A closing track centered on place, memory, and the way a hometown can keep echoing
-              through every version of who you become.
-            </p>
-            <p class="song-tools">Music: Suno · Cover art: Adobe Firefly</p>
-            <p class="song-status">Mood: nostalgic, expansive, closing-statement</p>
-            <audio class="song-player" controls preload="none">
-              <source src="assets/audio/Backroads%20Don't%20Forget.wav" type="audio/wav">
-            </audio>
-            <div class="song-links">
-              <a href="assets/lyrics/song-10-backroads-dont-forget.txt">Lyrics file</a>
-              <a href="assets/descriptions/song-10-backroads-dont-forget.md">Description file</a>
-            </div>
-          </article>
-        </div>
-      </section>
-
       <section class="section process-grid" id="process">
         <div class="section-heading">
-          <p class="eyebrow">Workflow</p>
-          <h2>A practical path from placeholder to public release.</h2>
+          <p class="eyebrow">Publish Path</p>
+          <h2>Final steps from local library to public GitHub Pages site.</h2>
         </div>
 
         <article class="process-card">
           <span class="step-number">01</span>
-          <h3>Listen through the sequence</h3>
-          <p>Check the pacing from the opener through the closer and decide whether any alternate export should replace a current main-track pick.</p>
+          <h3>Review the sequence</h3>
+          <p>Click through the library and make sure the current alternate exports are the ones you want representing each song.</p>
         </article>
         <article class="process-card">
           <span class="step-number">02</span>
-          <h3>Tighten the final visuals</h3>
-          <p>Swap any cover image that feels weaker than the rest, especially if you want a more consistent aspect ratio or stronger color story.</p>
+          <h3>Push to GitHub</h3>
+          <p>Commit the site, media, and docs to your target repository so the full static project lives in one place.</p>
         </article>
         <article class="process-card">
           <span class="step-number">03</span>
-          <h3>Push the repo to GitHub</h3>
-          <p>Add the project to a GitHub repository with the finished assets so the static site and media all live together.</p>
+          <h3>Deploy from root</h3>
+          <p>Publish the branch root with GitHub Pages so `index.html`, `styles.css`, `script.js`, and `assets/` all resolve together.</p>
         </article>
         <article class="process-card">
           <span class="step-number">04</span>
-          <h3>Publish to GitHub Pages</h3>
-          <p>Publish this folder as a shareable GitHub Pages site once you are happy with the sequencing and artwork choices.</p>
+          <h3>Share the link</h3>
+          <p>Once the Pages build is live, the site becomes a single shareable portfolio page for the full Dust & Echo collection.</p>
         </article>
       </section>
     </main>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
